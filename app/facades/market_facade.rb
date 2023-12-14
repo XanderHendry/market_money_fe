@@ -31,10 +31,3 @@ class MarketFacade
       json[:data][:attributes][:vendor_count]})
   end
 end
-
-# def movie_previews
-#   json = @query != 'top_rated' ? MovieService.search_results(@query) : MovieService.discover_results
-#   json[:results].map do |preview_data|
-#     Preview.new(preview_data)
-#   end
-# end
