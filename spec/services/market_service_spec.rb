@@ -44,4 +44,28 @@ RSpec.describe MarketService do
       expect(market[:attributes][:vendor_count]).to be_a(Integer)
     end
   end
+  describe '#market_show' do
+    it 'returns a Markets details', :vcr do
+      market = MarketService.new.market_show('322458')
+      expect(market).to have_key(:data)
+      expect(market).to be_a(Hash)
+      expect(market[:data]).to have_key(:id)
+      expect(market[:data][:id]).to eq('322458')
+      market_details = market[:data][:attributes]
+      expect(market_details[:name]).to eq("14\u0026U Farmers' Market")
+      expect(market_details[:street]).to eq('1400 U Street NW ')
+      expect(market_details[:city]).to eq("Washington")
+      expect(market_details[:county]).to eq("District of Columbia")
+      expect(market_details[:state]).to eq("District of Columbia")
+      expect(market_details[:zip]).to eq('20009')
+      expect(market_details[:lat]).to eq("38.9169984")
+      expect(market_details[:lon]).to eq("-77.0320505")
+      expect(market_details[:vendor_count]).to eq(1)
+    end
+  end
+  xdescribe '#market_vendors' do
+    it 'returns a list of a Markets Vendors' do
+      
+    end
+  end
 end 
