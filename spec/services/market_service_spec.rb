@@ -4,7 +4,7 @@ RSpec.describe MarketService do
   describe '#conn' do 
     it 'returns a Faraday object' do 
       service = MarketService.new
-      expect(service).to be_a(Faraday::Connection)
+      expect(service.conn).to be_a(Faraday::Connection)
     end
   end
   describe '#get_url' do 
