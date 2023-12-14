@@ -1,0 +1,18 @@
+<head>
+  <style>
+    h1 {text-align: center;}
+    h3 {text-align: center;}
+  </style> 
+</head>
+<body>
+  <h1><%= @facade.name %></h1>
+    <%= "Contact Info:" %><br>
+    <%= "Name: #{@facade.contact_name}" %><br>
+    <%= "Phone: #{@facade.contact_phone}" %><br>
+  <div>
+  <p><%= "Credit Accepted?: #{@facade.credit_accepted?}" %></p>
+  </div>
+  <div>
+  <p><%= "Description: #{@facade.description}" %></p>
+  </div>
+</body>

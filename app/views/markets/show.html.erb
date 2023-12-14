@@ -1,0 +1,17 @@
+<head>
+  <style>
+    h1 {text-align: center;}
+    h3 {text-align: center;}
+  </style> 
+</head>
+<body>
+  <h1><%= @market.name %></h1>
+  <h3><%= @market.street %></h3>
+  <h3><%= "#{@market.city}, #{@market.state} #{@market.zip}" %></h3>
+<section id="market_vendors">
+  <p>Vendors at our Market</p>
+  <% @market_vendors.each do |vendor| %>
+    <%= link_to "#{vendor.name}", "/vendors/#{vendor.id}", method: :get %>
+  <% end %>
+</section>  
+</body>
