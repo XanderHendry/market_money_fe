@@ -1,0 +1,30 @@
+<head>
+  <style>
+    h1 {text-align: center;}
+    table, th, td{
+      border: 1px solid black;
+    }
+  </style> 
+</head>
+<body>
+            <h1>Markets</h1>
+  <table>
+    <colgroup>
+      <col span='4' style='background-color:yellow'>
+    </colgroup>
+    <tr>
+      <th>Name</th>
+      <th>City</th>
+      <th>State</th>
+      <th>     </th>
+    </tr>
+    <% @facade.each do |market| %>
+      <tr>
+        <td><%= market.name %></td>
+        <td><%= market.city %></td>
+        <td><%= market.state %></td>
+        <td><%= button_to 'More Info', "/markets/#{market.id}", method: :get %></td>
+      </tr>
+    <% end %>
+  </table>
+</body>
