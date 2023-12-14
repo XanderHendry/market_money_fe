@@ -8,16 +8,18 @@ RSpec.describe MarketService do
     end
   end
   describe '#get_url' do 
-    it 'returns parsed JSON data' do 
-      parsed_response = MarketService.new.get_url('/markets')
+    it 'returns parsed JSON data', :vcr do 
+      parsed_response = MarketService.new.get_url('/api/v0/markets')
       expect(parsed_response).to be_a Hash
-      expect(parsed_response[:results]).to be_an(Array)
+      expect(parsed_response[:data]).to be_an(Array)
     end
   end
   describe '#market_index' do 
-    it 'returns a list of Markets' do
-      list = MarketService.new.get_url('/markets')
-      market = list[:results].first
+    it 'returns a list of Markets', :vcr do
+      list = MarketService.new.get_url('/api/v0/markets')
+      expect(list.count).to eq(846)
+      market = list[:data].first
+      expect(market).to be_a(Hash)
       expect(market).to have_key(:name)
       expect(market[:name]).to be_a(String)
       expect(market).to have_key(:street)
@@ -34,6 +36,8 @@ RSpec.describe MarketService do
       expect(market[:lat]).to be_a(String)
       expect(market).to have_key(:lon)
       expect(market[:lon]).to be_a(String)
+      expect(market).to have_key(:vendor_count)
+      expect(market[:vendor_count]).to be_a(Integer)
     end
   end
 end 
