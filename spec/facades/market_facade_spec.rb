@@ -18,9 +18,9 @@ RSpec.describe MarketFacade do
       expect(poros.first).to respond_to(:vendor_count)
     end
   end
-  describe '#get_market' do
+  describe '#get_market', :vcr do
   it 'converts a single Market from parsed JSON to Market POROs', :vcr do
-    market = MarketFacade.new.all_markets
+    market = MarketFacade.new.get_market('322458')
     expect(market).to be_a(Market)
     expect(market).to respond_to(:id)
     expect(market).to respond_to(:name)
