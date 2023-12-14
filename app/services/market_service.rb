@@ -8,4 +8,8 @@ class MarketService
     response = conn.get(url)
     JSON.parse(response.body, symbolize_names: true)
   end
+
+  def market_index
+    markets = get_url('/api/v0/markets')
+  end
 end
