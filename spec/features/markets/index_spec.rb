@@ -4,7 +4,6 @@ RSpec.describe 'Market Index' do
   describe 'visiting the market index page (/markets)', :vcr do
     it 'displays each markets name, city, state, and a button for more info' do
       visit markets_path
-      save_and_open_page
       expect(page).to have_content('Markets')
       expect(page).to have_content("Name")
       expect(page).to have_content("City")
