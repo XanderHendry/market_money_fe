@@ -15,7 +15,7 @@ RSpec.describe Vendor do
   describe '#credit_accepted?' do
     it 'returns a boolean value for if a vendor accepts credit.' do
       vendor = Vendor.new({id: "55823", name: "The Charcuterie Corner", description: "Vendor selling a variety of artisanal cured meats and sausages.", contact_name: "Claudie Langworth III", contact_phone: "1-147-179-9747", credit_accepted: false})
-      expect(vendor.credit_accepted?).to eq(false)
+      expect(vendor.credit_accepted?).to eq("NO")
     end
   end
 end 

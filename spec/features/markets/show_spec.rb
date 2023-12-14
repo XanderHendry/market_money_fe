@@ -4,7 +4,6 @@ RSpec.describe 'Market Show', :vcr do
   describe 'visiting the market show page (/markets/:market_id)', :vcr do
     it 'displays the given Markets details, and a list of its Vendors' do
       visit '/markets/322458'
-      save_and_open_page
       expect(page).to have_content("14&U Farmers' Market")
       expect(page).to have_content('1400 U Street NW')
       expect(page).to have_content("Washington, District of Columbia 20009")

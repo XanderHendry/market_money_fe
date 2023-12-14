@@ -15,6 +15,11 @@ class Vendor
   end
 
   def credit_accepted?
-    @credit_accepted
+    if @credit_accepted == true
+      response = "YES"
+    else
+      response = "NO"
+    end
+    response
   end
 end
