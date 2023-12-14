@@ -22,6 +22,8 @@ RSpec.describe MarketService do
       expect(market).to be_a(Hash)
       expect(market).to have_key(:id)
       expect(market[:id]).to be_a(String)
+      expect(market).to have_key(:type)
+      expect(market[:type]).to be_a(String)
       expect(market).to have_key(:attributes)
       expect(market).to be_a(Hash)
       expect(market[:attributes]).to have_key(:name)
@@ -51,6 +53,8 @@ RSpec.describe MarketService do
       expect(market).to be_a(Hash)
       expect(market[:data]).to have_key(:id)
       expect(market[:data][:id]).to eq('322458')
+      expect(market[:data]).to have_key(:type)
+      expect(market[:data][:type]).to eq('market')
       market_details = market[:data][:attributes]
       expect(market_details[:name]).to eq("14\u0026U Farmers' Market")
       expect(market_details[:street]).to eq('1400 U Street NW ')
@@ -63,9 +67,28 @@ RSpec.describe MarketService do
       expect(market_details[:vendor_count]).to eq(1)
     end
   end
-  xdescribe '#market_vendors' do
-    it 'returns a list of a Markets Vendors' do
-      
+  describe '#market_vendors' do
+    it 'returns a list of a Markets Vendors', :vcr do
+      market_vendors = MarketService.new.market_vendors('322458')
+      expect(market_vendors).to have_key(:data)
+      expect(market_vendors).to be_a(Hash)
+      expect(market_vendors[:data].count).to eq(1)
+      expect(market_vendors[:data].first).to have_key(:id)
+      expect(market_vendors[:data].first[:id]).to eq('55823')
+      expect(market_vendors[:data].first).to have_key(:type)
+      expect(market_vendors[:data].first[:type]).to eq('vendor')
+      expect(market_vendors[:data].first).to have_key(:attributes)
+      expect(market_vendors[:data].first[:attributes]).to be_a(Hash)
+      vendor = market_vendors[:data].first[:attributes]
+      expect(vendor).to have_key(:name)
+      expect(vendor[:name]).to be_a(String)
+      expect(vendor).to have_key(:description)
+      expect(vendor[:description]).to be_a(String)
+      expect(vendor).to have_key(:contact_name)
+      expect(vendor[:contact_name]).to be_a(String)
+      expect(vendor).to have_key(:contact_phone)
+      expect(vendor[:contact_phone]).to be_a(String)
+      expect(vendor).to have_key(:credit_accepted)
     end
   end
 end 

@@ -14,6 +14,10 @@ class MarketService
   end
 
   def market_show(market_id)
-    markets = get_url("/api/v0/markets/#{market_id}")
+    market = get_url("/api/v0/markets/#{market_id}")
+  end
+
+  def market_vendors(market_id)
+    market_vendors = get_url("/api/v0/markets/#{market_id}/vendors")
   end
 end
