@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe 'Market Index' do
-  describe 'visiting the market index page (/markets)' do
+  describe 'visiting the market index page (/markets)', :vcr do
     it 'displays each markets name, city, state, and a button for more info' do
       visit markets_path
 
